@@ -7,32 +7,23 @@
 }
 
 
-/* #head{
-    height: 8rem;
-    text-align: center;
-    font-weight: bold;
-    font-size: 2rem;
-    background-image: url(../images/bg2.jpg) ;
-    /* background-color: rgba(6, 66, 19, 0.808); */
-    /* background: url(../images/bg2.jpg) no-repeat center center/cover; */
-    
-/* }  */
+
 .logo{
-    /* background-image: url("https://iisdammam.edu.sa/wp-content/uploads/2020/01/logo-icon-e1578305912975.jpg"); */
+   
     padding: 62px;
     margin: 6px;
     background-image: url(../images/logo3.png) 
-    /* {{!-- <img  src="https://iisdammam.edu.sa/wp-content/uploads/2020/01/logo-icon-e1578305912975.jpg" alt=""> --}} */
+   
 
 }
 
 
-body{
+body,html{
     height: 100%;
     max-width: 100%;
     margin: 0;
-    font-family: 'Sura', serif;
-    font: normal 14px Roboto,arial,sans-serif;
+    /* font-family: 'Sura', serif;
+    font: normal 14px Roboto,arial,sans-serif; */
     background: url("../images/bg2.jpg") no-repeat center center/cover;
 
   }
