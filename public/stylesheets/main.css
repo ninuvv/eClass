@@ -5,27 +5,25 @@
     padding: 0;
     font-family: 'Sura', serif;
 }
-
-
-
 .logo{
    
     padding: 62px;
     margin: 6px;
     background-image: url(../images/logo3.png) 
    
-
 }
 
-
-body,html{
+ 
+ body{
     height: 100%;
     max-width: 100%;
     margin: 0;
-    /* font-family: 'Sura', serif;
-    font: normal 14px Roboto,arial,sans-serif; */
+    /* width: 100vw; */
+    min-height: 100vh;
+     background: url("../images/bg2.jpg") no-repeat center center/cover;
+ }
+  .h-primary{
     background: url("../images/bg2.jpg") no-repeat center center/cover;
-
   }
   #tutor_img{
     height: 27rem;
@@ -37,5 +35,3 @@ body,html{
   font-weight: bold;
   font-size: medium;
 }
-
-
