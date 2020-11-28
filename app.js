@@ -5,12 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session=require('express-session');
 
+// const cors = require('cors');
+const _ = require('lodash');
+
+var fileupload=require('express-fileupload');
 
 var db=require('./config/connection')
 
 
 var indexRouter = require('./routes/index');
-var studentRouter = require('./routes/users');
+var studentRouter = require('./routes/student');
 var tutorRouter = require('./routes/tutor');
 
 var exphbs = require('express-handlebars');
@@ -38,12 +42,22 @@ app.set('view engine', 'hbs');
 //session (install npm i express-session)
 app.use(session({secret:"key",cookie:{maxAge:600000}}))
 
+//npm i --save lodashdsh
+// app.use(cors());
+
+
+//file upload(npm i express fileupload)
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileupload());
+
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 app.use(express.static('public/images')); 

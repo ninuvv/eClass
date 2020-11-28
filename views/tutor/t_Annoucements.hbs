@@ -1,0 +1,28 @@
+<div class="container mt-5  ">
+         <h1 class="text-center">Annoucements</h1>
+    <div class="row justify-content-center annoucements">
+   
+        <div class="col-md-6">
+                <form action="/tutor/t_Annoucements" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Message</label>
+                        <input type="text" class="form-control" name="name" id="name">
+
+                    </div>
+                   
+                    <div class="form-group">
+                        <label >Description</label>
+                        <textarea class="form-control" name="desc" id="desc" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label >Image file</label>
+                        <input type="file" class="form-control-file" name="loadedFile" id="loadedFile" multiple>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+    </div>
+</div>
