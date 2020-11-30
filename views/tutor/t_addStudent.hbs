@@ -1,0 +1,55 @@
+<section>
+    <div class="container">
+        <h2>Add Student</h2>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <form action="/tutor/t_addstudent" method="POST" enctype="multipart/form-data">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label >First Name</label>
+                                <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                            </div>
+                           <div class="form-group col-md-6">
+                                <label >Last Name</label>
+                                <input type="text" class="form-control"  name="last_name" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <textarea class="form-control" name="address" id="" cols="10" rows="10" placeholder="Address"></textarea>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label >Contact Number</label>
+                            <input type="tel" class="form-control" name="mob"    placeholder="Contact Number">
+                        </div>
+
+                        <div class="form-group">
+                            <label >Email</label>
+                            <input type="email" class="form-control" name="email"    placeholder="Email">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                                <label >Password</label>
+                                <input type="password" class="form-control"  placeholder="Password">
+                            </div>
+
+                       
+
+                        <div class="form-group">
+                            <label for="image">Image file</label>
+                            <input type="file" class="form-control-file" name="Image" id="Image">
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</section>

@@ -5,8 +5,8 @@
         </div>
 
 
-        <div class="col-md-6 ">
-            <form class="" id="tutorForm" action="/tutor/tutorLogin" method="post">
+        <div class="col-md-6 " style="padding: 67px;">
+            <form class="font-weight-bold"  action="/student/studentLogin" method="post">
 
                 <div class="form-group">
                     <label>User name</label>
@@ -19,14 +19,14 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-success float-right">Login</button>
+                <button type="submit" class="btn btn-success float-right" id="loginbtn">Login</button>
 
 
             </form>
             <div>
-                {{#if loginErr}}
+                {{#if stloginErr}}
     
-                <p class="text-danger error">{{loginErr}} </p>
+                <p class="text-danger error">{{stloginErr}} </p>
                 {{/if}}
                 {{!-- <input type="checkbox"  name="fgtPass" value="fgtPass">
   <label>forget password</label><br> --}}

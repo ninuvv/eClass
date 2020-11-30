@@ -1,0 +1,40 @@
+<section>
+    <div class="container">
+        <div class="row mt-5 " style="margin-bottom: 10px;">
+            <a href="/tutor/t_addstudent" class="btn btn-success ml-auto" id="loginbtn"> Add student</a>
+        </div>
+        <table class="table mt-5" id="myTable">
+            <thead> 
+                <tr>
+                    <th scope="col">Sl_no</th>
+                    <th scope="col">Reg No</th>
+                    <th scope="col">Name</th>                    
+                     <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <th scope="row">{{$index}}</th>
+                    <td>{{this.regno}}</td>
+                    <td>{{this.first_name}}</td>
+                   
+                    <td>
+                        <a href="tutor/t_editstudent/{{this._id}}" class="btn btn-primary">Edit</a>
+                         <a href="tutor/t_deletestudent/{{this._id}}" class="btn btn-danger"
+                            onclick=" return confirm('Are you want to delete {{this.name}} {{this._id}}')">Delete</a>
+                        {{!-- <a href="admin/del_products ?id={{this._id}}&name=ninu" class="btn btn-primary">Delete</a> --}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+                       
+</section>
+
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>

@@ -1,17 +1,32 @@
+<section >
+  
 
-<nav class="navbar navbar-dark " style="background-color: #022465f2">
-  <p class="navp"> Hi     {{tutorDetails.name}} ,</p>
-      
-        <button class="float-right logoutbtn">
-          <a href="/tutor/tutorlogout">Log Out</a>
+  <nav class="navbar" >
+
+       <div class="row  col-12" style="padding: 1px 0px;">
+        <div class="logo">
+          <img src="/logo3.png" alt="" srcset="">
+        </div> 
+        <div class="font-weight-bold mx-auto">
+          <p class="mt-5" style="font-size: 2rem">The Indian School -KSA</p>
+        </div>
+      </div>
+<div  class="navbar"style="width:100%;background-color:  #022465f2">
+
+     <p class="navp"> Hi     {{tutorDetails.name}} ,</p> 
+
+     <button class="float-right logoutbtn">
+          <a href="/tutor/tutorlogout">Log Out</a>   
           
           </button>
+</div>
+
     </nav>
 
 <div class="sidebar">
   <a class="active" href="#home">Home</a>
   <a href="/tutor/tutorProfile">Profile</a>
-  <a href="#students">Students</a>
+  <a href="/tutor/t_viewstudents">Students</a>
   <a href="#attendance">Attendance</a>
    <a href="#assignments">Assignments</a>
   <a href="#notes">Notes</a>
@@ -20,6 +35,8 @@
   <a href="#gallery">Gallery</a>
 
 </div>
+</section>
+
 {{!-- 
 <div class="content">
   <h2>Responsive Sidebar Example</h2>

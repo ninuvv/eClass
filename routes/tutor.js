@@ -20,7 +20,6 @@ router.get("/", function (req, res) {
 })
 
 router.post('/tutorLogin', (req, res) => {
-
   tutorHelper.Login(req.body).then((response) => {
     if (response.status) {
       req.session.tutor = response.tutor;
@@ -127,14 +126,26 @@ router.post("/t_Annoucements", (req, res) => {
 })
 
 router.get("/tutorProfile", function (req, res) {
-  res.render('tutor/tutorProfile', { tutor: true, tutorDetails: req.session.tutor })
+if (req.session.tutor){
+   tutorHelper.tutorDetails( req.session.tutor._id).then((tutorDetails)=>{
+    console.log(tutorDetails)
+    res.render('tutor/tutorProfile', { tutor: true, tutorDetails })
+  })
+}else{
+  res.render('tutor/tutorProfile', { tutor: true,  tutorDetails: req.session.tutor })
+}
+ 
+  
 })
 
 router.post("/tutorProfile/:tutorId", (req, res) => {
   tutorHelper.UpdatetutorDetsils(req.params.tutorId, req.body).then(() => {
-    id=req.params.tutorId
-    res.redirect("/tutor/tutorProfile")
-   
+    id=req.params.tutorId    
+    if (req.files.Image) {
+      let image = req.files.Image
+      image.mv('./public/profile_photo/'+id+'.jpg')
+      res.redirect("/tutor/tutorProfile")
+    }
   })
 })
 
@@ -150,4 +161,13 @@ router.post("/t_Event", function (req, res) {
   })
 })
 
+
+router.get("/t_viewstudents", function (req, res) {
+  res.render('tutor/t_viewstudents', { tutor: true, tutorDetails: req.session.tutor })
+})
+
+
+router.get("/t_addstudent", function (req, res) {
+  res.render('tutor/t_addstudent', { tutor: true, tutorDetails: req.session.tutor })
+})
 module.exports = router;

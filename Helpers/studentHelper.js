@@ -7,13 +7,21 @@ var ObjId = require("mongodb").ObjectID
 
 
 module.exports = {
-    doSignUp: (userdata) => {
+    studentLogin: (studentdata) => {
         return new Promise(async (resolve, reject) => {
-            userdata.password = await bcrypt.hash(userdata.password, 10)
-            db.get().collection(collection.USER_COLECTION).insertOne(userdata).then((data) => {
-                resolve(data.ops[0])
-            })
+            let loginStatus = false
+            let response = {}
+            let student = await db.get().collection(collection.STUDENT_COLECTION).
+            findOne({ $and: [{ first_name: studentdata.username }, { password: studentdata.password }] })
+            if (student) {
+                response.student = student;                     
+                response.status = true;               
+                resolve(response)
 
+            } else {
+                console.log("login failed")
+                resolve({ status: false })
+            }
         })
     }
 }
