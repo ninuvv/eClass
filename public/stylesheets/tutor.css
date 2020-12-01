@@ -20,10 +20,10 @@ max-height: 100%;
   
   .sidebar a {
     display: block;
-    color: black;
+    color:#ffc107;
     padding: 16px;
     text-decoration: none;
-    font-weight: bold;
+    /* font-weight: bold; */
   }
    
   .sidebar a.active {
@@ -58,7 +58,29 @@ max-height: 100%;
     
   }
 
+  table, td, th {
+    border: 1px solid black;
+    border-color: black;
   
+  }
+  .table td, .table th {
+    border-bottom: 1px solid  black;
+    border-top: 1px solid  black;
+  }
+
+  .btn-edit {
+    color: #fff;
+    background-color: #1a2c6a;
+    border-color: #1a2c6a;
+  }
+
+  .btn-edit:hover {
+    color:#ffc107;
+    background-color: #1a2c6a;
+    border-color: #1a2c6a;
+  }
+
+
   .logoutbtn a{
     text-decoration: none;
     color: black;

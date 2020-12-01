@@ -1,55 +1,85 @@
 <section>
     <div class="container">
-        <h2>Add Student</h2>
-        <div class="row mt-5">
-            <div class="col-md-6">
-                <form action="/tutor/t_addstudent" method="POST" enctype="multipart/form-data">
-                    <form>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label >First Name</label>
-                                <input type="text" class="form-control" name="first_name" placeholder="First Name">
-                            </div>
-                           <div class="form-group col-md-6">
-                                <label >Last Name</label>
-                                <input type="text" class="form-control"  name="last_name" placeholder="Last Name">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress">Address</label>
-                            <textarea class="form-control" name="address" id="" cols="10" rows="10" placeholder="Address"></textarea>
-                            
-                        </div>
-                        <div class="form-group">
-                            <label >Contact Number</label>
-                            <input type="tel" class="form-control" name="mob"    placeholder="Contact Number">
-                        </div>
+        <h2 style="text-align: center;">Add Student</h2>
 
-                        <div class="form-group">
-                            <label >Email</label>
-                            <input type="email" class="form-control" name="email"    placeholder="Email">
+        {{!-- <div class="float-right">
+                    <img src="/student.jpg" style="width:100px ; height:auto;" class="pt-3" alt="" id="imgView">
+                    <input type="file" class="form-control-file" name="Image" id="Image" accept="image/jpg" onchange="viewImage(event)">
+                
+                
+                
+                </div> --}}
+        <form action="/tutor/t_addstudent" style="margin-left: 220px;" method="POST" enctype="multipart/form-data">
+
+            <div class="row mt-5" style="width: 134%;">
+                <div class="col-md-6">
+                    <div class="form-row">
+
+                        <div class="form-group col-md-6">
+
+                            <input type="text" class="form-control" name="first_name" placeholder="First Name" required>
                         </div>
 
                         <div class="form-group col-md-6">
-                                <label >Password</label>
-                                <input type="password" class="form-control"  placeholder="Password">
-                            </div>
 
-                       
-
-                        <div class="form-group">
-                            <label for="image">Image file</label>
-                            <input type="file" class="form-control-file" name="Image" id="Image">
+                            <input type="text" class="form-control" name="last_name" placeholder="Last Name">
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    </div>
+
+                    <div class="form-group">
+
+                        <textarea class="form-control" name="address" id="" cols="2" rows="3"
+                            placeholder="Address"></textarea>
+
+                    </div>
+                    <div class="form-group">
+
+                        <input type="tel" class="form-control" name="mob" placeholder="Contact Number">
+                    </div>
+
+                    <div class="form-group">
+
+                        <input type="email" class="form-control" name="email" placeholder="Email">
+                    </div>
+
+                    <div class="form-group">
+
+                        <input type="password" class="form-control"  name="password" placeholder="Password" required>
+                    </div>
+
+                    <div class="col-sm-12" style="text-align:center">
+                        <button type="submit" id="loginbtn" class="btn btn-primary">Submit</button>
+                    </div>
+
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group col-md-6">
+                        <img src=" " style="width:100px ; height:auto;" class="pt-3" alt="" id="imgView">
+                        <input type="file" class="form-control-file" required name="Image" id="Image" accept="image/jpg"
+                            onchange="viewImage(event)">
+
+                    </div>
+                      {{#if error}}
+    
+                          <p class="text-danger error">{{error}} </p>
+                   {{/if}}
+                </div>
+
             </div>
+        </form>
 
 
 
-        </div>
+
     </div>
 
 </section>
+
+<script>
+    function viewImage(event) {
+        document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
+    }
+</script>
