@@ -4,41 +4,47 @@ var studentHelper = require("../Helpers/studentHelper")
 
 /* GET users listing. */
 
+const verifyLogin = (req, res, next) => {
+   if (req.session.student) { next() }
+  else { res.redirect("/student") }
+}
+
+
 router.get("/", function (req, res) {
-    console.log("czxxzc"+req.session.student)
-  if (req.session.student) {  
+      if (req.session.student) {  
+        console.log("session is there ")
       res.redirect('student/studentHome')
   } else {
-    console.log("errormsg"+ req.session.stLoginErr )
-    res.render('student/studentLogin', { "stloginErr": req.session.stLoginErr });
-    console.log("23214321")
-    req.session.stloginErr = false;
+       res.render('student/studentLogin', { "loginErr": req.session.stdLoginErr });
+       req.session.stdloginErr = false;
   }
 
 })
 
+
+
 router.post('/studentLogin', (req, res) => {
-  console.log("errormsggggggggg"+ req.session.stLoginErr )
-  studentHelper.studentLogin(req.body).then((response) => {    
+   studentHelper.studentLogin(req.body).then((response) => {    
     if (response.status) {
       req.session.student = response.student;
       req.session.student.loggedin = true;
       res.render('student/studentHome', { student: true, studentDetails: req.session.student })
     } else {
-      console.log("failessection")
-      req.session.stLoginErr = "Invalid user name and password";
+       req.session.stdLoginErr = "Invalid user name and password";
       res.redirect('/student')
 
     }
   })
 })
 
-router.get('/studentlogout', (req, res) => {
-  console.log("student logout")
-  // req.session.destroy();
+router.get('/studentlogout', verifyLogin,(req, res) => {
   req.session.student.loggedin = false
   req.session.student = null
   res.redirect('/student')
+})
+
+router.get('/s_viewProfile',(req,res)=>{
+ res.render('student/s_viewProfile', { student: true, student: req.session.student })
 })
 
 

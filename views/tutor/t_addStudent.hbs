@@ -1,76 +1,90 @@
 <section>
     <div class="container">
-        <h2 style="text-align: center;">Add Student</h2>
+        <h1 class="text-center">Add Student</h2>
 
-        {{!-- <div class="float-right">
+            {{!-- <div class="float-right">
                     <img src="/student.jpg" style="width:100px ; height:auto;" class="pt-3" alt="" id="imgView">
                     <input type="file" class="form-control-file" name="Image" id="Image" accept="image/jpg" onchange="viewImage(event)">
                 
                 
                 
                 </div> --}}
-        <form action="/tutor/t_addstudent" style="margin-left: 220px;" method="POST" enctype="multipart/form-data">
+            <div class="row justify-content-center">
 
-            <div class="row mt-5" style="width: 134%;">
-                <div class="col-md-6">
-                    <div class="form-row">
+                <form action="/tutor/t_addstudent" method="POST" id="formType" enctype="multipart/form-data">
 
-                        <div class="form-group col-md-6">
+                    <div class="row mt-5" style="width: 134%;">
+                        <div class="col-md-10">
+                            <div class="form-row">
 
-                            <input type="text" class="form-control" name="first_name" placeholder="First Name" required>
+                                <div class="form-group col-md-6">
+                                    <label for="">First Name</label>
+                                    <input type="text" class="form-control" name="first_name" placeholder="First Name"
+                                        required>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="">last Name</label>
+                                    <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Address</label>
+                                <textarea class="form-control" name="address" id="" cols="2" rows="3"
+                                    placeholder="Address"></textarea>
+
+                            </div>
+                            <div class="form-group">
+                                <p>
+                                    Gender :
+                                    <input type="radio" name="gender" value="Female" checked>Female
+                                    <input type="radio" name="gender" value="Male">Male
+                                </p>
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">contact Number</label>
+                                <input type="tel" class="form-control" name="mob" placeholder="Contact Number">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Email</label>
+                                <input type="email" class="form-control" name="email" placeholder="Email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Password"
+                                    required>
+                            </div>
+
+                            <div class="col-sm-12" style="text-align:center">
+                                <button type="submit" id="loginbtn" class="btn btn-primary">Submit</button>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group col-md-6">
+                                <img src=" " style="width:100px ; height:auto;" class="pt-3" alt="" id="imgView">
+                                <input type="file" class="form-control-file" required name="Image" id="Image"
+                                    accept="image/jpg" onchange="viewImage(event)">
+
+                            </div>
+                            {{#if error}}
+
+                            <p class="text-danger error">{{error}} </p>
+                            {{/if}}
                         </div>
 
-                        <div class="form-group col-md-6">
-
-                            <input type="text" class="form-control" name="last_name" placeholder="Last Name">
-                        </div>
-
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <textarea class="form-control" name="address" id="" cols="2" rows="3"
-                            placeholder="Address"></textarea>
-
-                    </div>
-                    <div class="form-group">
-
-                        <input type="tel" class="form-control" name="mob" placeholder="Contact Number">
-                    </div>
-
-                    <div class="form-group">
-
-                        <input type="email" class="form-control" name="email" placeholder="Email">
-                    </div>
-
-                    <div class="form-group">
-
-                        <input type="password" class="form-control"  name="password" placeholder="Password" required>
-                    </div>
-
-                    <div class="col-sm-12" style="text-align:center">
-                        <button type="submit" id="loginbtn" class="btn btn-primary">Submit</button>
-                    </div>
-
-
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group col-md-6">
-                        <img src=" " style="width:100px ; height:auto;" class="pt-3" alt="" id="imgView">
-                        <input type="file" class="form-control-file" required name="Image" id="Image" accept="image/jpg"
-                            onchange="viewImage(event)">
-
-                    </div>
-                      {{#if error}}
-    
-                          <p class="text-danger error">{{error}} </p>
-                   {{/if}}
-                </div>
-
+                  
+                </form>
             </div>
-        </form>
-
 
 
 

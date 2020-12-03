@@ -15,11 +15,11 @@
 
  
  body{
-    height: 100vh;
+    height: 130vh;
     max-width: 100%;
     margin: 0;
     /* width: 100vw; */
-    min-height: 100vh;
+    /* min-height: 100vh; */
      background: url("../images/bg2.jpg") no-repeat center center/cover;
  }
   /* .h-primary{
@@ -36,3 +36,6 @@
   font-size: medium;
 }
 
+label{
+  font-weight: bold;
+}

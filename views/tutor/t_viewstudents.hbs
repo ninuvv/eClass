@@ -1,9 +1,10 @@
 <section>
     <div class="container">
         <div class="row mt-5 " style="margin-bottom: 10px;">
+            <h2>Student Details</h2>
             <a href="/tutor/t_addStudent" class="btn btn-edit ml-auto" > Add student</a>
         </div>
-        <table class="table mt-5" id="myTable">
+        <table class="table mt-5" id="team-list">
             <thead> 
                 <tr>
                     <th scope="col">Sl_no</th>
@@ -15,7 +16,7 @@
             <tbody>
                 {{#each students}}
                 <tr>
-                    <th scope="row">{{$index}}</th>
+                    <td></td>
                     <td>{{this.regno}}</td>
                     <td>{{this.first_name}}</td>
                    

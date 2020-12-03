@@ -1,6 +1,6 @@
 <section>
     <div class="container">
-        <h2 style="text-align: center;">Add Student</h2>
+        <h2 style="text-align: center;">Edit Student Details</h2>
 
         {{!-- <div class="float-right">
                     <img src="/student.jpg" style="width:100px ; height:auto;" class="pt-3" alt="" id="imgView">
@@ -9,44 +9,61 @@
                 
                 
                 </div> --}}
-        <form action="/tutor/t_editStudent/{{student._id}}" style="margin-left: 220px;" method="POST" enctype="multipart/form-data">
+        <form action="/tutor/t_editStudent/{{student._id}}"  method="POST" id="formType"
+            enctype="multipart/form-data">
 
             <div class="row mt-5" style="width: 134%;">
+
                 <div class="col-md-6">
+                    <h4>Registration Number :{{student.regno}} </h4>
                     <div class="form-row">
 
                         <div class="form-group col-md-6">
-
-                            <input type="text" class="form-control" name="first_name" value="{{student.first_name}}" placeholder="First Name" required>
+                            <label for="">First Name</label>
+                            <input type="text" class="form-control" name="first_name" value="{{student.first_name}}"
+                                required>
                         </div>
 
                         <div class="form-group col-md-6">
-
-                            <input type="text" class="form-control" name="last_name" value="{{student.last_name}}" placeholder="Last Name">
+                            <label for="">Last Name</label>
+                            <input type="text" class="form-control" name="last_name" value="{{student.last_name}}">
                         </div>
 
 
                     </div>
 
                     <div class="form-group">
-
-                        <textarea class="form-control" name="address" id="" cols="2" rows="3"
-                            placeholder="Address"> {{student.address}}</textarea>
+                        <label for="">Address</label>
+                        <textarea class="form-control" name="address" id="" cols="2"
+                            rows="3"> {{student.address}}</textarea>
 
                     </div>
                     <div class="form-group">
+                        <p class="font-weight-bold">
+                            Geneder :
+                              <input type="radio" id="Female" name="gender" value="female"  >female
+                            <input type="radio" id="Male" name="gender" value="Male" checked>Male
+                            {{!-- <input type="radio" id="Female" name="gender" value="female"  {{helpers.RDCHECKED 'male' 'female' }})  >female
+                            <input type="radio" id="Male" name="gender" value="Male" {{helpers.RDCHECKED 'female' 'Male' }})>Male --}}
+                        </p>
+                    </div>
 
-                        <input type="tel" class="form-control" name="mob" value="{{student.mob}}"  placeholder="Contact Number">
+
+
+                    <div class="form-group">
+                        <label for="">Contact Number</label>
+                        <input type="tel" class="form-control" name="mob" value="{{student.mob}}">
                     </div>
 
                     <div class="form-group">
-
-                        <input type="email" class="form-control" name="email" value="{{student.email}}" placeholder="Email">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" name="email" value="{{student.email}}"
+                            placeholder="Email">
                     </div>
 
                     <div class="form-group">
-
-                        <input type="password" class="form-control"  name="password"  placeholder="Password" required>
+                        <label for="">Re Enter Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password" required>
                     </div>
 
                     <div class="col-sm-12" style="text-align:center">
@@ -57,15 +74,13 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group col-md-6">
-                        <img src="/profile_photo/{{student._id}}.jpg" style="width:100px ; height:auto;" class="pt-3" alt="" id="imgView">
+                        <img src="/profile_photo/{{student._id}}.jpg" style="width:100px ; height:auto;" class="pt-3"
+                            alt="" id="imgView">
                         <input type="file" class="form-control-file" name="Image" id="Image" accept="image/jpg"
                             onchange="viewImage(event)">
 
                     </div>
-                      {{#if error}}
-    
-                          <p class="text-danger error">{{error}} </p>
-                   {{/if}}
+
                 </div>
 
             </div>
@@ -82,4 +97,6 @@
     function viewImage(event) {
         document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
     }
+
+
 </script>

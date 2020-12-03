@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var tutorHelper = require("../Helpers/tutorHelper")
 var _ = require('lodash');
-
+const path=require('path')
 
 const verifyLogin = (req, res, next) => {
   console.log("verify"+req.session.tutor)
@@ -18,7 +18,7 @@ router.get("/", function (req, res) {
     // res.render('tutor/tutorLogin')
     res.redirect('tutor/tutorHome')
   } else {
-console.log("ver3")
+
     res.render('tutor/tutorLogin', { "loginErr": req.session.userLoginErr });
     req.session.userLoginErr = false;
   }
@@ -164,16 +164,16 @@ router.get("/t_Event", verifyLogin, function (req, res) {
 
 
 router.post("/t_Event",  function (req, res) {
-  tutorHelper.addEvent(req.body, (result) => {
+  tutorHelper.addEvent(req.body).then((result)=>{
     res.redirect("/tutor/t_Event")
-
   })
+
 })
 
 
 router.get("/t_viewStudents", verifyLogin, function (req, res) {
   tutorHelper.getallStudents().then((students) => {
-      res.render('tutor/t_viewStudents', {students, tutor: true, tutorDetails: req.session.tutor })
+       res.render('tutor/t_viewStudents', {students, tutor: true, tutorDetails: req.session.tutor })
 
   })
 
@@ -184,17 +184,18 @@ router.get("/t_addStudent", verifyLogin, function (req, res) {
   res.render('tutor/t_addStudent', { tutor: true, tutorDetails: req.session.tutor })
 })
 
-router.post("/t_addStudent", function (req, res) {
-
-  tutorHelper.addStudent(req.body).then((result) => {
-    let image = req.files.Image   
+router.post("/t_addStudent",  async (req, res)=> {
+let REGNO=await tutorHelper.RegistrationNumber()
+  tutorHelper.addStudent(req.body,REGNO).then((result) => {
+    let image = req.files.Image 
+        // console.log("exttt"+path.extname(req.files.Image.toString() )  )
   //   let q=req.files.Image.toString()
     
-  //  let exttype= q.split('.')[0]
+  //  let exttype= q.split('.')[1]
  
   //  console.log("wwww"+exttype)
     image.mv('./public/profile_photo/' + result + '.'+ 'jpg', (err, done) => {
-      if (!err) res.redirect('/tutor/t_addStudent')
+      if (!err) res.redirect('/tutor/t_viewStudents')
       else console.log(err)
     })
 
@@ -204,7 +205,9 @@ router.post("/t_addStudent", function (req, res) {
 
 router.get("/t_editStudent/:studId", verifyLogin, async (req, res) => {
   let student = await tutorHelper.editStudentDetails(req.params.studId);
-  res.render('tutor/t_editStudent', { student , tutor: true, tutorDetails: req.session.tutor})
+ let RDCHECKED= tutorHelper.registerHelper;
+console.log(RDCHECKED)
+  res.render('tutor/t_editStudent', { student , tutor: true, tutorDetails: req.session.tutor,helpers:{RDCHECKED}})
 })
 
 router.post("/t_editStudent/:studId", (req, res) => {
@@ -227,5 +230,16 @@ router.get("/t_deletestudent/:studId",verifyLogin, function (req, res) {
   })
 })
 
+router.get("/t_Assignments", verifyLogin, function (req, res) {
+  res.render('tutor/t_Assignments', { tutor: true})
+})
+
+router.post("/t_Assignments", (req, res) => {
+  tutorHelper.addAssignment( req.body).then((id) => {
+      let image = req.files.assignmentfile
+      image.mv('./public/assignments/'+id+'.jpg')
+ res.redirect('/tutor/t_Assignments')
+  })
+})
 
 module.exports = router;
