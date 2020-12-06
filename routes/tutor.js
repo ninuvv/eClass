@@ -132,14 +132,15 @@ router.post("/t_Annoucements", verifyLogin, (req, res) => {
 })
 
 router.get("/tutorProfile", verifyLogin, function (req, res) {
-  // if (req.session.tutor) {
-  //   tutorHelper.tutorDetails(req.session.tutor._id).then((tutorDetails) => {
-  //     console.log(tutorDetails)
-  //     res.render('tutor/tutorProfile', { tutor: true, tutorDetails })
-  //   })
-  // } else {
-    res.render('tutor/tutorProfile', { tutor: true, tutorDetails: req.session.tutor })
-  // }
+ if (req.session.tutor) {
+     tutorHelper.tutorDetails(req.session.tutor._id).then((tutorDetails) => {
+    console.log(tutorDetails)
+     res.render('tutor/tutorProfile', { tutor: true, tutorDetails })
+     })
+ }
+      else {
+     res.render('tutor/tutorProfile', { tutor: true, tutorDetails: req.session.tutor })
+      }
 
 
 })
@@ -189,9 +190,9 @@ let REGNO=await tutorHelper.RegistrationNumber()
   tutorHelper.addStudent(req.body,REGNO).then((result) => {
     let image = req.files.Image 
         // console.log("exttt"+path.extname(req.files.Image.toString() )  )
-  //   let q=req.files.Image.toString()
+    let q=req.files.Image.name.toString()
     
-  //  let exttype= q.split('.')[1]
+   let exttype= q.split('.')[1]
  
   //  console.log("wwww"+exttype)
     image.mv('./public/profile_photo/' + result + '.'+ 'jpg', (err, done) => {
@@ -215,7 +216,11 @@ router.post("/t_editStudent/:studId", (req, res) => {
     id=req.params.studId
     if (req.files) {
       let image = req.files.Image
-      image.mv('./public/profile_photo/'+id+'.jpg')
+      let q=req.files.Image.name.toString()
+    
+      let exttype= q.split('.')[1]
+    
+      image.mv('./public/profile_photo/'+id+'.' + 'jpg')
     }
  res.redirect('/tutor/t_viewStudents')
   })
@@ -230,15 +235,27 @@ router.get("/t_deletestudent/:studId",verifyLogin, function (req, res) {
   })
 })
 
-router.get("/t_Assignments", verifyLogin, function (req, res) {
-  res.render('tutor/t_Assignments', { tutor: true})
+router.get("/t_Assignments", verifyLogin, async (req, res)=> {
+  let assignments=await tutorHelper.loadAssignment()
+  res.render('tutor/t_Assignments', { tutor: true,tutorDetails: req.session.tutor , assignments })
 })
 
 router.post("/t_Assignments", (req, res) => {
-  tutorHelper.addAssignment( req.body).then((id) => {
+
+    let q=req.files.assignmentfile.name.toString()    
+   let exttype= q.split('.')[1]
+
+  tutorHelper.addAssignment( req.body,req.files.assignmentfile.name).then((id) => {
       let image = req.files.assignmentfile
-      image.mv('./public/assignments/'+id+'.jpg')
+      image.mv('./public/assignments/'+id+'.' +exttype)
  res.redirect('/tutor/t_Assignments')
+  })
+})
+router.get("/t_delAssignment/:assgnId",verifyLogin, function (req, res) {
+  let assgnId = req.params.assgnId
+  console.log(assgnId)
+  tutorHelper.deleteAssignment(assgnId).then((data) => {
+       res.redirect("/tutor/t_Assignments")
   })
 })
 

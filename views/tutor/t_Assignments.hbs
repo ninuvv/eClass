@@ -1,15 +1,15 @@
-<div class="container mt-5 ">
+<div class="container mt-3 ">
     <h1 style="text-align: center;">Assignment</h1>
     <div class="row justify-content-center">
-        <div class="col-md-10 mt-5">
-            <form action="/tutor/t_Assignments" id="formType" method="POST" enctype="multipart/form-data">
+        <div class="col-md-10 mt-3">
+            <form action="/tutor/t_Assignments" id="formType" class="assgin" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="">Topic</label>
                     <input type="text" class="form-control" name="topic" id="" required>
                 </div>
                 <div class="form-group">
                     <label for="">Topic</label>
-                    <input type="file" class="form-control" name="assignmentfile" id="" required>
+                    <input type="file" class="form-control" name="assignmentfile" id="uploadFile" required>
                 </div>
 
                 <div class="col-sm-12" style="text-align:center">
@@ -18,7 +18,39 @@
 
             </form>
         </div>
+
+          <table class="table mt-5" id="team-list">
+            <thead> 
+                <tr>
+                    <th scope="col">Sl_no</th>
+                    <th scope="col">Topic</th>
+                    <th scope="col">file name</th>                    
+                     <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each assignments}}
+                <tr>
+                    <td></td>
+                    <td>{{this.topic}}</td>
+                    <td>{{this.fileName}}</td>
+                   
+                    <td>                        
+                         <a href="t_delAssignment/{{this._id}}" class="btn btn-danger"
+                            onclick=" return confirm('Are you want to delete {{this.topic}}')">Delete</a>
+                        {{!-- <a href="admin/del_products ?id={{this._id}}&name=ninu" class="btn btn-primary">Delete</a> --}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
     </div>
 
 
 </div>
+
+<script>
+    
+
+</script>

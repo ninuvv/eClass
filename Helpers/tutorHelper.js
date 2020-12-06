@@ -29,9 +29,12 @@ module.exports = {
         })
     },
 
-    registerHelper: ("setChecked", function (value, test) {
-        if (value == undefined) return '';
-        return value == test ? 'checked' : '';
+    registerHelper: ("setChecked", function (value, currentValue) {
+        if (value == currentValue) {
+            return "checked";
+        } else {
+            return "";
+        }
     }),
 
     RegistrationNumber: () => {
@@ -160,10 +163,11 @@ module.exports = {
         })
     },
 
-    addAssignment: (details) => {
+    addAssignment: (details,fileName) => {
 
         return new Promise(async (resolve, reject) => {
             details.date=new Date()
+            details.fileName=fileName
                  db.get().collection(collection.ASSIGNMENT_COLLECTION).insertOne(details).then((data) => {
                 resolve(data.ops[0]._id)
             })
@@ -172,6 +176,20 @@ module.exports = {
 
       
     },
+    loadAssignment: () => {
+        return new Promise(async (resolve, reject) => {
+            let assignments = await db.get().collection(collection.ASSIGNMENT_COLLECTION).find().toArray();
+              resolve(assignments)
+        })
+    },
 
+    deleteAssignment:(assignId)=>{
+        return new Promise( (resolve, reject) => {
+            db.get().collection(collection.ASSIGNMENT_COLLECTION).removeOne({_id:ObjId(assignId)}).then((data)=>{
+                resolve(data)
+            })
+            
+        })
+    },
 
 }

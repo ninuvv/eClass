@@ -1,24 +1,24 @@
 <section>
     <div class="container">
         <h2 style="text-align: center;">Student profile </h2>
+ <h3>Registration No  :{{studentDetails.regno}}</h3>
 
-
-        <form action="/student/s_viewProfile" style="margin-left: 220px;" method="POST">
+        <form action="/student/s_viewProfile" id="formType" style="margin-left: 220px;" method="POST">
             <fieldset disabled="disabled">
                 <div class="row mt-5" style="width: 134%;">
-                    <h3>Registration No  :{{student.regno}}</h3>
-                    <div class="col-md-6">
+                   
+                    <div class="col-sm-6 col-md-6">
                         <div class="form-row">
 
                             <div class="form-group col-md-6">
                                 <label for="">First Name</label>
                                 <input type="text" class="form-control" name="first_name"
-                                    value="{{student.first_name}}">
+                                    value="{{studentDetails.first_name}}">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="">last Name</label>
-                                <input type="text" class="form-control" name="last_name" value="{{student.last_name}}">
+                                <input type="text" class="form-control" name="last_name" value="{{studentDetails.last_name}}">
                             </div>
 
 
@@ -27,17 +27,23 @@
                         <div class="form-group">
                             <label for="">Address</label>
                             <textarea class="form-control" name="address" id="" cols="2"
-                                rows="3"> {{student.address}}</textarea>
+                                rows="3"> {{studentDetails.address}}</textarea>
 
                         </div>
+
+                          <div class="form-group">
+                            <label for="">Gender</label>
+                            <input type="text" class="form-control" name="gender" value="{{studentDetails.gender}}">
+                        </div>
+
                         <div class="form-group">
                             <label for="">Contact Number</label>
-                            <input type="tel" class="form-control" name="mob" value="{{student.mob}}">
+                            <input type="tel" class="form-control" name="mob" value="{{studentDetails.mob}}">
                         </div>
 
                         <div class="form-group">
                             <label for="">Email</label>
-                            <input type="email" class="form-control" name="email" value="{{student.email}}">
+                            <input type="email" class="form-control" name="email" value="{{studentDetails.email}}">
                         </div>
 
 
@@ -45,9 +51,9 @@
 
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-6 col-md-6">
                         <div class="form-group col-md-6">
-                            <img src="/profile_photo/{{student._id}}.jpg" style="width:100px ; height:auto;"
+                            <img src="/profile_photo/{{studentDetails._id}}" style="width:100px ; height:auto;"
                                 class="pt-3" alt="" id="imgView">
                             <input type="file" class="form-control-file" name="Image" id="Image" accept="image/jpg"
                                 onchange="viewImage(event)">

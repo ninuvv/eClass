@@ -63,7 +63,8 @@
             <div class="col-sm-12" style="text-align:center">
 
 
-                <button type="submit" id="loginbtn" class="btn btn-primary">Edit</button>
+                <button type="submit" id="loginbtn" class="btn btn-primary"
+                    onclick="return CheckFileName()">Edit</button>
             </div>
 
 
@@ -76,5 +77,23 @@
 <script>
     function viewImage(event) {
         document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
+    }
+
+    function CheckFileName() {
+
+        var fileName = document.getElementById("Image").value
+        if (fileName) {
+
+            if (fileName.split(".")[1].toUpperCase() == "JPG")
+                return true;
+            else if (fileName.split(".")[1].toUpperCase() == "PNG")
+                return true;
+
+            else {
+                alert("File with " + fileName.split(".")[1] + " is invalid. Upload a validfile with JPG/PNG extensions");
+                return false;
+            }
+        }
+        return true;
     }
 </script>

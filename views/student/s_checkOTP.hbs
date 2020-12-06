@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="error"></div>
+  
+
+    <form action="/student/s_checkOTP" id="OTP" method="post">
+        <h2> verify OTP</h2>
+        <div class="form-row">
+             <input name="requestId" type="hidden" value="{{ requestId }}">
+              <input name="code" placeholder="Enter code">
+              
+            {{!-- <input type="text" name="otp" id="otp" placeholder="otp" required> --}}
+        </div>
+        <button type="submit" class="btn btn-primary">verify OTP</button>
+
+
+
+    </form>
+</div>
